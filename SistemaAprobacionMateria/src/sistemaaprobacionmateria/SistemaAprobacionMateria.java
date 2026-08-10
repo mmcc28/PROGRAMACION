@@ -22,6 +22,7 @@ public class SistemaAprobacionMateria {
     promedio final. Si el promedio es mayor o igual a 65.0, debe mostrar un mensaje indicando que el
     estudiante está "Aprobado". De lo contrario, debe mostrar "Reprobado".
     Requisito estricto: Solo puedes usar una estructura if/else simple.
+    
     */
     public static void main(String[] args) {
         // TODO code application logic here
