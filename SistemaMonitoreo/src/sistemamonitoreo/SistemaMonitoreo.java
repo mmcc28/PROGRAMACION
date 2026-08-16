@@ -6,7 +6,8 @@ package sistemamonitoreo;
 
 import java.util.Random;
 import java.util.Scanner;
-import java.util.Set;
+
+
 
 /**
  *
@@ -91,61 +92,73 @@ public class SistemaMonitoreo {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+     
+        //libreria
         Scanner sc = new Scanner(System.in);
         Random rd = new Random();
         
+        // definir variables
         String nombreUsuario = "John Doe";
         int numLectura = 0;
+        double tempC = 0; // se va a generar temp en grados Celcius
         int ciclo = 0;
-        double tempC = 0;
-        double tempF = 0;
-        int numSobreCalentamiento=0;
+        double tempF=0;
+        int numSobreCalentamiento = 0; 
         double promedio = 0;
-        double acumTEMP = 0;
-        
-        System.out.print("Nombre de Operacion: ");
+        double acumTemp = 0;
+             
+       // paso 1: capturar nombre del usuario
+        System.out.print("Nombre de Operario:");
         nombreUsuario = sc.nextLine().toUpperCase();
-        System.out.printf("Validar Captura: %s\n",nombreUsuario);
+        System.out.printf("Validar Captura:%s\n", nombreUsuario);
         
-        do{
-            System.out.print("Numero de Lecturas: ");
+       // paso 2: capturar numero de lecturas  
+        do {
+            System.out.print("Numero de Lecturas:");
             numLectura = sc.nextInt();
-            //System.out.printf("Validacion Captura :%d\n",numLectura);
-            //if(!(numLectura>0 && numLectura<50)){
-            if(numLectura<0 || numLectura>50){
-                System.out.println("Valor NO VALIDO");
-                System.out.println("Tiene que ser entre 0 y 50");
-            }
-        //}while(!(numLectura>0 && numLectura<50));
-        }while(numLectura<0 || numLectura>50);
+            //System.out.printf("Validacion Captura: %d\n", numLectura);
+            if (!(numLectura > 0 && numLectura < 50)) {
+                System.out.println("VALOR NO VALIDO");
+                System.out.println("TIENE QUE SER ENTRE 0 y 50");
+            }// fin if
+        } while (!(numLectura > 0 && numLectura < 50));
+       
+       
         
-        while(ciclo < numLectura){
-        //while(numLectura>0){    
-            tempC = rd.nextDouble(200,500);
+        // paso 3: generacion de temperatura random
+        
+        
+        
+        //ciclo de repeticion 
+        
+        while (ciclo < numLectura) { // variable control donde va a comenzar
+
+            tempC = rd.nextDouble(200, 500);
             tempF = (tempC*9/5)+32;
-            //tempC = (Math.random()*500)-300 + 200; 
-            //System.out.printf("Validacion Random :%.2f\n",tempC);
-            System.out.printf("Num Lec: %d\tTemp C: %.2f\n",ciclo+1,tempC);
-            System.out.printf("Temp en Faren: %.2f\n",tempF);
+            // tempC = (Math.random ()* 500)-300 + 200, es lo mismo que rd.nextDouble(200,500)
+            //System.out.printf("Validacion Random: %.2f\n", tempC);
+
+            System.out.printf("Num Lec: %d\tTemp C: %.2f\n", ciclo+1, tempC);
+            System.out.printf("Temp en Faren: %.2f\n", tempF);
             
-            if(tempF>662){
-                System.out.println("Alerta!!!...SobreCalentamiento");
-                numSobreCalentamiento++;
+            if (tempF > 662) {
+                System.out.println("Alerta!!!.... SOBRECALENTAMIENTO");
+                numSobreCalentamiento ++;
             }else{
-                acumTEMP +=tempF;
-            }
-            //System.out.printf("Num Lec: %d\tTemp C: %.2f\n",numLectura,tempC);
+                acumTemp += tempF;
+            }// fin if
+
+            
             ciclo++;
-            //numLectura--;
-        }//Fin de While
-        promedio = acumTEMP / numLectura;
+        }// fin de while 
         
-        System.out.println("------------------------");
-        System.out.println("        RESUMEN         ");
-        System.out.println("------------------------");
+        promedio = acumTemp/numLectura;
+        System.out.println("------------------------------");
+        System.out.println("             RESUMEN          ");
+        System.out.println("------------------------------");
         System.out.println("");
-        System.out.printf("Promedio de TEMP: %.2f\n",promedio);
-        System.out.printf("# SobreCalentamiento: %d",numSobreCalentamiento);
+        System.out.printf("Promedio de Temp: %.2f\n", promedio);
+        System.out.printf("# SoobreCalentamiento: %d\n", numSobreCalentamiento);
         
     }//Fin Main
     
