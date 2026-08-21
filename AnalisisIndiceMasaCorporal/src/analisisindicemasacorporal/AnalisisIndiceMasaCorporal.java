@@ -58,7 +58,7 @@ o 30.0 o más: "Obesidad"
 
             } else if (calculoIMC < 25.0) {
 
-                System.out.println("DIAGNOSTICO: NORMAL");
+                System.out.println("DIAGNOSTICO: NORMAL ");
 
             } else if (calculoIMC < 30) {
                 System.out.println("DIAGNOSTICO: SOBREPESO");
