@@ -24,7 +24,7 @@ siempre debe ser estrictamente mayor que el tercer lado.
 o Si no es un triángulo válido, imprime un mensaje de error.
 o Si es válido usar una estructura de selección para clasificarlo:
 ▪ Equilátero (los 3 lados iguales).
-▪ Isósceles (exactamente 2 lados iguales).
+▪ Isósceles (exactamente 2  lados iguales).
 ▪ Escaleno (ningún lado igual).
     */
     public static void main(String[] args) {
