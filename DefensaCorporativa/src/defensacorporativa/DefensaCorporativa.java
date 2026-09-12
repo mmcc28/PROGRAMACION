@@ -60,11 +60,25 @@ public class DefensaCorporativa {
         Scanner sc = new Scanner(System.in);
         
         final int SERVIDORES = 8;
+        final int FILA = 4;
+        final int COLU = 4;
         
         int[] cantidadIntentos = new int[SERVIDORES];
         int sumaAtaques = 0;
         int posicionServidor = 0;
         double promedio =0;
+        int[][] nivelAmenaza = new int [FILA][COLU]; // arreglo bidimensional, PRIMERO REPRESENTA NUMERO DE FILA, SEGUNDO NUMERO DE COLUMNA
+        /*
+        Fila 0         0,1
+        Fila 1                       1,2
+        Fila 2                                        2,3
+        Fila 3
+                    columna 1       columna2       columna3
+        
+        */
+        
+        
+        
         
         for (int i = 0; i < SERVIDORES; i++) {
             System.out.println("Ingrese cantidad de intentos:");
@@ -79,6 +93,15 @@ public class DefensaCorporativa {
         promedio = CalculoPromedio(sumaAtaques, SERVIDORES);
         
         ImpresionResultados(sumaAtaques, posicionServidor, promedio);
+        
+        System.out.println("---------------------");
+        System.out.println("     FASE 2          ");
+        System.out.println("---------------------");
+        nivelAmenaza = IngresoDatosAmenazas(sc, FILA, COLU);
+        
+        MostrarNivelesAmenaza(nivelAmenaza);
+        
+        NivelesCritico(nivelAmenaza);
         
     
     }// FIN MAIN
@@ -155,5 +178,57 @@ public class DefensaCorporativa {
         System.out.printf("POSICION DE SERVIDOR: %d\n", posicion );
         System.out.printf("PROMEDIO: %.2f \n", promedio);
     }// fin ImpresionResultados
+    
+    public static int[][] IngresoDatosAmenazas(Scanner sc, int fil, int col){
+        
+        int [][] arregloTemp = new int [fil][col];
+        
+        for (int i = 0; i < fil; i++) {
+            for (int j = 0; j < col; j++) { 
+                System.out.printf("Amenaza Equipo: %d,   %d:", i,j);
+                
+                arregloTemp[i][j] = sc.nextInt();
+                     
+            }// Fin columna
+                      
+        }// Fin Funcion Ingreso Datos
+        
+        
+        return arregloTemp;
+        
+    }// Fin Funcion Ingreso DAtos
+    
+    public static void MostrarNivelesAmenaza (int[][] arreglo){
+        
+         for (int i = 0; i < arreglo.length; i++) {
+             System.out.println("----------------------");
+            for (int j = 0; j < arreglo[i].length; j++) {  // me da cuantas columnas hay en esa fila 
+                System.out.printf("\n #Pos Equipo: %d    %d\n",i+1,j+1);
+                System.out.printf("Valor Amenaza:%d", arreglo [i][j]);
+                
+            }// fin for columna 
+            
+             System.out.println("|");
+             System.out.println("\n---------------------");
+            
+            }// Fin for fila
+        
+    }// fin funcion MostrarNivelesAmenaza 
+    
+    public static void NivelesCritico (int[][]arreglo){
+        for (int i = 0; i < arreglo.length; i++) {
+            for (int j = 0; j < arreglo[i].length; j++) {
+                if (arreglo[i][j]>=85) {
+                    System.out.println("ALERTA CRITICA");
+                    System.out.printf("POSICION EQUIPOS: %d, %d\n", j+1,j+1);
+                    System.out.printf("Valor: %d\n", arreglo [i][j]);
+                    System.out.println("--------------");
+                } // fin if
+           
+                
+            } //fin fot columna
+            
+        }// fin for fila
+    }// fin funcion niveles critico
     
 }// FIN CLASS
